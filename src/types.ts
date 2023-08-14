@@ -5,3 +5,7 @@ export interface Film {
   director: string;
   year: number;
 }
+
+export interface FilmContextStructure {
+  films: Film[];
+}
