@@ -1,8 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
-import Header from "../Header/Header";
-import Navigation from "../Navigation/Navigation";
 import { FilmsContextProvider } from "../store/films/context/FilmsContextProvider";
+import App from "./App";
 
 describe("Given an App component", () => {
   describe("When it is rendered", () => {
@@ -12,7 +11,7 @@ describe("Given an App component", () => {
       render(
         <BrowserRouter>
           <FilmsContextProvider>
-            <Header />
+            <App />
           </FilmsContextProvider>
         </BrowserRouter>,
       );
@@ -28,7 +27,9 @@ describe("Given an App component", () => {
 
       render(
         <BrowserRouter>
-          <Navigation />
+          <FilmsContextProvider>
+            <App />
+          </FilmsContextProvider>
         </BrowserRouter>,
       );
 

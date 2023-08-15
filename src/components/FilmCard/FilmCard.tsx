@@ -1,11 +1,11 @@
 import React from "react";
 import { X } from "react-feather";
-import { Film } from "../../types";
+import { FilmStructure } from "../../types";
 import Button from "../Button/Button";
 import "./FilmCard.css";
 
 interface FilmCardStructureProps {
-  film: Film;
+  film: FilmStructure;
 }
 
 const FilmCard = ({
