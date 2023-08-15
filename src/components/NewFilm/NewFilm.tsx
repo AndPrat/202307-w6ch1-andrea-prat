@@ -1,21 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FilmStructure } from "../../types";
 import Button from "../Button/Button";
-import FilmsContext from "../store/films/context/FilmContext";
 import "./NewFilm.css";
 
 const NewFilm = (): React.ReactElement => {
-  const [canSubmit] = useState(FilmsContext);
+  const [canSubmit, setCanSubmit] = useState(false);
 
   const initialFilmData = {
-    id: 0,
     title: "",
     poster: "",
     director: "",
     year: 0,
   };
 
-  const [newFilm, setNewFilm] = useState<FilmStructure>(initialFilmData);
+  const [newFilm, setNewFilm] =
+    useState<Partial<FilmStructure>>(initialFilmData);
 
   const changeNewFilm = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNewFilm((newFilm) => ({
@@ -23,6 +22,14 @@ const NewFilm = (): React.ReactElement => {
       [event.target.id]: event.target.value,
     }));
   };
+
+  useEffect(() => {
+    setCanSubmit(
+      Object.values(newFilm).every((value) => {
+        return Boolean(value);
+      }),
+    );
+  }, [newFilm]);
 
   return (
     <form className="form-film">
@@ -49,7 +56,7 @@ const NewFilm = (): React.ReactElement => {
         <input
           type="number"
           id="year"
-          value={newFilm.year}
+          value={newFilm.year || ""}
           onChange={changeNewFilm}
         />
       </div>
