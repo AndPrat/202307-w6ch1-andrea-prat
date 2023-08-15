@@ -20,10 +20,7 @@ const NewFilm = (): React.ReactElement => {
   const changeNewFilm = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNewFilm((newFilm) => ({
       ...newFilm,
-      [event.target.id]:
-        event.target.type === "checkbox"
-          ? event.target.checked
-          : event.target.value,
+      [event.target.id]: event.target.value,
     }));
   };
 
