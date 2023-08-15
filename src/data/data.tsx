@@ -1,6 +1,6 @@
-import { Film } from "../types";
+import { FilmStructure } from "../types";
 
-const filmsData: Film[] = [
+const filmsData: FilmStructure[] = [
   {
     id: 1,
     title: "Viaje a Darjeeling",
