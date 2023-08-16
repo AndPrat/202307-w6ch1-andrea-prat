@@ -10,6 +10,7 @@ describe("Given a getFilms function", () => {
           current: { getFilms },
         },
       } = renderHook(() => useFilmsApi());
+
       const filmsList = await getFilms();
 
       expect(filmsList).toStrictEqual(filmsListMock);

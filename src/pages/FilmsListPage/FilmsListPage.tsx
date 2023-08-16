@@ -7,7 +7,9 @@ const FilmsListPage = (): React.ReactElement => {
   const { loadFilms } = useContext(FilmsContext);
 
   useEffect(() => {
-    loadFilms();
+    (async () => {
+      loadFilms();
+    })();
   }, [loadFilms]);
 
   return (

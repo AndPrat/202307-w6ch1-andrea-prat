@@ -26,7 +26,7 @@ const NewFilm = (): React.ReactElement => {
   useEffect(() => {
     setCanSubmit(
       Object.values(newFilm).every((value) => {
-        return Boolean(value);
+        return value;
       }),
     );
   }, [newFilm]);
