@@ -13,7 +13,7 @@ describe("Given a NewFilm component", () => {
       expect(nameLabelTitleForm).toBeInTheDocument();
     });
 
-    test("Then it should show button with name 'Crear película'", () => {
+    test("Then it should show a button with name 'Crear película'", () => {
       const expectNameButton = "Crear película";
 
       render(<NewFilm />);
@@ -29,33 +29,29 @@ describe("Given a NewFilm component", () => {
     test("Then it should show 'Moonlight', 'Barry Jenkins', 2016, 'https://pics.filmaffinity.com/moonlight-232276883-mmed.jpg'", async () => {
       const expectTitleInputText = "Moonlight";
       const expectDirecctionInputText = "Barry Jenkins";
-      const expectYearInputText = 2016;
+      const expectYearInput = "2016";
       const expectImageInputText =
         "https://pics.filmaffinity.com/moonlight-232276883-mmed.jpg";
 
       render(<NewFilm />);
 
-      const titleTextBox = screen.getByRole("textbox", {
-        name: /título:/i,
-      }) as HTMLInputElement;
-      const directionTextBox = screen.getByRole("textbox", {
-        name: /dirección:/i,
-      }) as HTMLInputElement;
-      const yearTextBox = screen.getByRole("spinbutton", {
-        name: /año/i,
-      }) as HTMLInputElement;
-      const urlTextBox = screen.getByRole("textbox", {
-        name: /url cartel/i,
-      }) as HTMLInputElement;
+      const titleTextBox = screen.getByLabelText("Título:") as HTMLInputElement;
+      const directionTextBox = screen.getByLabelText(
+        "Dirección:",
+      ) as HTMLInputElement;
+      const yearTextBox = screen.getByLabelText("Año:") as HTMLInputElement;
+      const urlTextBox = screen.getByLabelText(
+        "URL cartel:",
+      ) as HTMLInputElement;
 
       await userEvent.type(titleTextBox, expectTitleInputText);
       await userEvent.type(directionTextBox, expectDirecctionInputText);
-      await userEvent.type(yearTextBox, expectYearInputText.toString());
+      await userEvent.type(yearTextBox, expectYearInput);
       await userEvent.type(urlTextBox, expectImageInputText);
 
       expect(titleTextBox.value).toBe(expectTitleInputText);
       expect(directionTextBox.value).toBe(expectDirecctionInputText);
-      expect(yearTextBox.value).toBe(expectYearInputText.toString());
+      expect(yearTextBox.value).toBe(expectYearInput);
       expect(urlTextBox.value).toBe(expectImageInputText);
     });
   });

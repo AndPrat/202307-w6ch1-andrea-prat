@@ -12,6 +12,7 @@ export const FilmsContextProvider = ({
 
   const loadFilms = useCallback(async () => {
     const apiFilms = await getFilms();
+
     setFilms([...apiFilms]);
   }, [getFilms]);
 
@@ -20,6 +21,7 @@ export const FilmsContextProvider = ({
       films,
       loadFilms,
     }),
+
     [films, loadFilms],
   );
 
